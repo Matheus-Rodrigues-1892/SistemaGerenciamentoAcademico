@@ -1,7 +1,17 @@
+package modelos;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+
+import funcionalidades.Adicao;
+import funcionalidades.Edicao;
+import funcionalidades.Pesquisa;
+import funcionalidades.Pilha;
+import funcionalidades.Relatorio;
+import interfaces.Menu;
+import funcionalidades.Remocao;
 
 public class MenuInt implements Menu {
     public void principal(){
@@ -68,7 +78,7 @@ public class MenuInt implements Menu {
                 2 - Atividade
                 3 - Projeto""");
     }
-    @Override
+    
     public void operacaoUndo(){
         System.out.println("""
                 DESFAZER:
@@ -82,7 +92,7 @@ public class MenuInt implements Menu {
 
     }
 
-    public void optMenuI(Scanner input, ArrayList<Usuario> listUsuario, int identificador, String senha, int logged, ArrayList<Projeto> listProjeto, Pilha redo, ArrayList<Atividade> listActivity, Pilha undo) throws ParseException, NumberFormatException, NullPointerException, InputMismatchException {
+    public void optMenuI(Scanner input, List<Usuario> listUsuario, int identificador, String senha, int logged, List<Projeto> listProjeto, Pilha redo, List<Atividade> listAtividade, Pilha undo) throws ParseException, NumberFormatException, NullPointerException, InputMismatchException {
         MenuInt menu = new MenuInt();
         Coordenador coordenador = new Coordenador();
         Usuario user = Usuario.criarUsuario();
@@ -94,9 +104,9 @@ public class MenuInt implements Menu {
                     usuarios();
                     int option = input.nextInt();
                     switch (option) {
-                        case 1 -> Criar.criarUsuario(input, listUsuario, redo);
-                        case 2 -> Update.editUser(input, listUsuario, redo);
-                        case 3 -> Remocao.removeUsuarios(input, listUsuario, redo);
+                        case 1 -> Adicao.adicionaUsuario(input, listUsuario, redo);
+                        case 2 -> Edicao.editaUsuario(input, listUsuario, redo);
+                        case 3 -> Remocao.RemoveUsuario(input, listUsuario, redo);
                         default -> System.out.println("Opcao invalida!");
                     }
                     break;
@@ -104,19 +114,19 @@ public class MenuInt implements Menu {
                     atividades();
                     option = input.nextInt();
                     switch (option) {
-                        case 1 -> Add.addAtividade(input, listActivity, listUser, redo);
-                        case 2 -> Update.editAtividade(input, listActivity, listUser, redo);
-                        case 3 -> Remove.delAtividade(input, listActivity, redo);
+                        case 1 -> Adicao.adicionaAtividade(input, listAtividade, listUsuario, redo);
+                        case 2 -> Edicao.editaAtividade(input, listAtividade, listUsuario, redo);
+                        case 3 -> Remocao.RemoveAtv(input, listAtividade, redo);
                         default -> System.out.println("Opcao invalida!");
                     }
                     break;
                 case 3:
-                    projetos();();
+                    projetos();
                     option = input.nextInt();
                     switch (option) {
-                        case 1 -> Criar.addProject(input,listProjeto, listUsuario, listActivity, identificador, redo);
-                        case 2 -> Update.editProject(input, listProjeto, listUsuario, listActivity, identificador, redo);
-                        case 3 -> Remove.delProject(input, listProjeto, redo);
+                        case 1 -> Adicao.adicionaProjeto(input,listProjeto, listUsuario, listAtividade, identificador, redo);
+                        case 2 -> Edicao.editProjeto(input, listProjeto, listUsuario, listAtividade, identificador, redo);
+                        case 3 -> Remocao.RemoveProj(input, listProjeto, redo);
                         default -> System.out.println("Opcao invalida!");
                     }
                     break;
@@ -132,56 +142,56 @@ public class MenuInt implements Menu {
                                     """);
                             opt = input.nextInt();
                             switch (opt){
-                                case 1 -> Query.consultaUser(listUsuario, coordenador);
-                                case 2 -> Query.consultaUser(listUsuario);
+                                case 1 -> Pesquisa.consultaUser(listUsuario, coordenador);
+                                case 2 -> Pesquisa.consultaUsuario(listUsuario);
                                 default -> System.out.println("Opcao invalida!");
                             }
                         case 2:
-                            Query.consultaAtividade(listActivity);
+                            Pesquisa.consultaAtv(listAtividade);
                             break;
                         case 3:
-                            Query.consultaProject(listProject);
+                            Pesquisa.consultaProj(listProjeto);
                             break;
                         default:
                             System.out.println("Opcao invalida!");
                     }
                     break;
                 case 5:
-                    user.changePass(listUser, identificador, password);
+                    user.alterar(listUsuario, identificador, senha);
                     break;
                 case 6:
-                    stringRelatorio();
+                    relatorio();
                     option = input.nextInt();
                     switch (option) {
-                        case 1 -> Reports.projetoRelatorio(listProject);
-                        case 2 -> Reports.atividadeRelatorio(listActivity);
+                        case 1 -> Relatorio.projetoRelatorio(listProjeto);
+                        case 2 -> Relatorio.atividadeRelatorio(listAtividade);
                         default -> System.out.println("Opcao invalida!");
                     }
                     break;
                 case 7:
-                    Bolsa.bountyManager(listProject);
+                    Bolsa.gerenciamento(listProjeto);
                     break;
                 case 8:
-                    stringActions();
+                    acoes();
                     option = input.nextInt();
                     switch (option) {
                         case 1:
-                            stringDesfazer();
+                            operacaoUndo();
                             opt = input.nextInt();
                             switch (opt) {
-                                case 1 -> Pilha.desfazer(redo, undo, listUser);
-                                case 2 -> Pilha.desfazer(redo, undo, listActivity);
-                                case 3 -> Pilha.desfazer(redo, undo, listProject);
+                                case 1 -> Pilha.opDesfazer(redo, undo, listUsuario);
+                                case 2 -> Pilha.opDesfazer(redo, undo, listAtividade);
+                                case 3 -> Pilha.opDesfazer(redo, undo, listProjeto);
                                 default -> System.out.println("Opcao invalida!");
                             }
                             break;
                         case 2:
-                            stringRefazer();
+                            operacaoRedo();
                             opt = input.nextInt();
                             switch (opt) {
-                                case 1 -> Pilha.refazer(redo, undo, listUser);
-                                case 2 -> Pilha.refazer(redo, undo, listActivity);
-                                case 3 -> Pilha.refazer(redo, undo, listProject);
+                                case 1 -> Pilha.opRefazer(redo, undo, listUsuario);
+                                case 2 -> Pilha.opRefazer(redo, undo, listAtividade);
+                                case 3 -> Pilha.opRefazer(redo, undo, listProjeto);
                                 default -> System.out.println("Opcao invalida!");
                             }
                             break;
@@ -197,18 +207,42 @@ public class MenuInt implements Menu {
             }
         }
     }
-    @Override
-    public void optMenuE(int logged, List<DefaultUser> listUser, int identificador, Pilha redo, Pilha undo, List<Project> listProject, List<Activity> listActivities, MenuExt menu, MenuInt menu1) {
+    
+    public void optMenuE(int logged, List<Usuario> listUsuario, int identificador, Pilha redo, Pilha undo, List<Projeto> listProjeto, List<Atividade> listAtividade, MenuExt menu, MenuInt menu1) {
 
     }
 
     @Override
-    public int isLogged(int logged, List<DefaultUser> listUser, String login, String password, int identificador) {
+    public int isLogged(int logged, List<Usuario> listUsuario, String login, String senha, int identificador) {
         return 0;
     }
 
-    @Override
-    public void login(int logged, List<DefaultUser> listUser, int identificador, List<Project> listProject, Pilha redo, Pilha undo, List<Activity> listActivity, MenuExt menu, MenuInt menu1) {
+    
+    public void login(int logged, List<Usuario> listUsuario, int identificador, List<Projeto> listProjeto, Pilha redo, Pilha undo, List<Atividade> listAtividade, MenuExt menu, MenuInt menu1) {
 
+    }
+    @Override
+    public void menuE(int logged, List<Usuario> listUsuarios, int id, Pilha operacaoRedo, Pilha operacaoUndo,
+            List<Projeto> listProjetos, List<Atividade> listAtividades, MenuExt menu, MenuInt menu1)
+            throws ParseException {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void redo() {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void undo() {
+        // TODO Auto-generated method stub
+        
+    }
+    @Override
+    public void menuI(Scanner input, List<Usuario> listUsuarios, int identificador, String senha, int logged,
+            List<Projeto> listProjetos, Pilha operacaoRedo, List<Atividade> listAtividades, Pilha operacaoUndo)
+            throws ParseException {
+        // TODO Auto-generated method stub
+        
     }
 }

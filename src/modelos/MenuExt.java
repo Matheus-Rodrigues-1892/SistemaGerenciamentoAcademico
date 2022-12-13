@@ -1,19 +1,25 @@
+package modelos;
 import java.text.ParseException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import funcionalidades.Adicao;
+import funcionalidades.Gerenciar;
+import funcionalidades.Pilha;
+import interfaces.Menu;
+
 public class MenuExt implements Menu{
-    public void optMenuE(int logged, ArrayList<Usuario> listUser, int identificador, Pilha redo, Pilha undo, ArrayList<Projeto> listProject, ArrayList<Atividade> listActivities, MenuExt menu, MenuInt menu1) throws ParseException, NumberFormatException, NullPointerException {
+    public void optMenuE(int logged, List<Usuario> listUsuario, int identificador, Pilha redo, Pilha undo, List<Projeto> listProjeto, List<Atividade> listAtividade, MenuExt menu, MenuInt menu1) throws ParseException, NumberFormatException, NullPointerException {
         loop: while (true) {
             Scanner input = new Scanner(System.in).useDelimiter("\n");
             menu.principal();
             int opt = input.nextInt();
             switch (opt) {
                 case 1:
-                    menu.login(logged, listUser, identificador, listProject, redo, undo, listActivities, menu, menu1);
+                    menu.login(logged, listUsuario, identificador, listProjeto, redo, undo, listAtividade, menu, menu1);
                     break;
                 case 2:
-                    Criar.addUser(input, listUser, redo);
+                    Adicao.adicionaUsuario(input, listUsuario, null);
                     break;
                 case 3:
                     System.out.println("You logged out! See you next time.");
@@ -30,11 +36,12 @@ public class MenuExt implements Menu{
                 2 - Cadastro de usuario
                 3 - Sair""");
     }
-    public int isLogged(int logged, List<DefaultUser> listUser, String login, String password, int identificador){
-        for (DefaultUser defaultUser : listUser) {
-            if (defaultUser.getLogin().equals(login) && defaultUser.getPassword().equals(password)) {
+    @Override
+    public int isLogged(int logged, List<Usuario> listUsuarios, String login, String senha, int identificador){
+        for (Usuario usuario : listUsuarios) {
+            if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha)) {
                 System.out.println("Logado com sucesso!");
-                identificador = defaultUser.getId();
+                identificador = usuario.getId();
                 return 1;
             }
         }
@@ -42,37 +49,28 @@ public class MenuExt implements Menu{
         return 0;
     }
 
-    public void login(int logged, ArrayList<Usuario> listUsuario, int identificador, ArrayList<Projeto> listProject, Pilha redo, Pilha undo, ArrayList<Atividade> listActivity, MenuExt menu, MenuInt menu1) {
-        //System.out.println(listUser.get(0).getName());
+    public void login(int logged, List<Usuario> listUsuario, int identificador, List<Projeto> listProjeto, Pilha redo, Pilha undo, List<Atividade> listAtividade, MenuExt menu, MenuInt menu1) {
         Scanner input = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Login:");
         String login = input.nextLine();
         System.out.println("Senha: ");
         String password = input.nextLine();
-        while( menu.isLogged(logged, listUser, login, password, identificador) == 1) {
-            Process.processMenuInt(menu1, input, listUser, identificador, password, logged, listProject, redo, listActivity, undo);
+        while( menu.isLogged(logged, listUsuario, login, password, identificador) == 1) {
+            Gerenciar.processMenuInt(menu1, input, listUsuario, identificador, password, logged, listProjeto, redo, listAtividade, undo);
             break;
         }
-        //System.out.println(logged);
 
     }
 
-
-    @Override
-    public void optMenuI(Scanner input, List<DefaultUser> listUser, int identificador, String password, int logged, List<Project> listProject, Pilha redo, List<Activity> listActivity, Pilha undo) {
+    public void optMenuI(Scanner input, List<Usuario> listUsuarios, int identificador, String senha, int logged, List<Projeto> listProjeto, Pilha redo, List<Atividade> listAtividade, Pilha undo) {
 
     }
     @Override
-    public void menuE(int logged, ArrayList<Usuario> listUsuarios, int id, Pilha operacaoRedo, Pilha operacaoUndo,
-            ArrayList<Projeto> listProjetos, ArrayList<Atividade> listAtividades, MenuExt menu, MenuInt menu1)
+    public void menuE(int logged, List<Usuario> listUsuarios, int id, Pilha operacaoRedo, Pilha operacaoUndo,
+            List<Projeto> listProjetos, List<Atividade> listAtividades, MenuExt menu, MenuInt menu1)
             throws ParseException {
         // TODO Auto-generated method stub
         
-    }
-    @Override
-    public int isLogged(int logged, ArrayList<Usuario> listUsuarios, String login, String senha, int id) {
-        // TODO Auto-generated method stub
-        return 0;
     }
     @Override
     public void usuarios() {
@@ -115,8 +113,8 @@ public class MenuExt implements Menu{
         
     }
     @Override
-    public void menuI(Scanner input, ArrayList<Usuario> listUsuarios, int identificador, String senha, int logged,
-            ArrayList<Projeto> listProjetos, Pilha operacaoRedo, ArrayList<Atividade> listAtividades,
+    public void menuI(Scanner input, List<Usuario> listUsuarios, int identificador, String senha, int logged,
+            List<Projeto> listProjetos, Pilha operacaoRedo, List<Atividade> listAtividades,
             Pilha operacaoUndo) throws ParseException {
         // TODO Auto-generated method stub
         
