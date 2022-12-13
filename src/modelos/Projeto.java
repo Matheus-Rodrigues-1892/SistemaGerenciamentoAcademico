@@ -1,7 +1,11 @@
+package modelos;
+
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Projeto {
+
     protected String ident;
     protected String descricao;
     protected Date dataInicio;
@@ -12,8 +16,8 @@ public class Projeto {
     protected String status;
     protected Usuario coordenador;
     private String cargos;
-    private ArrayList<Atividade> atividades;
-    private ArrayList<Usuario> profissionais;
+    private List<Atividade> atividades;
+    private List<Usuario> profissionais;
 
     private Projeto(){
         this.responsavel = new Usuario();
@@ -27,7 +31,7 @@ public class Projeto {
     }
 
 
-    public ArrayList<Atividade> getAtividades() {
+    public List<Atividade> getAtividades() {
         return atividades;
     }
 
@@ -107,7 +111,7 @@ public class Projeto {
         this.status = status;
     }
 
-    public ArrayList<Usuario> getProfissionais() {
+    public List<Usuario> getProfissionais() {
         return profissionais;
     }
 

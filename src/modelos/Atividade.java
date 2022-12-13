@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import interfaces.UsuarioInterface;
+
 public class Atividade {
     private Atividade(){
         this.responsavel = new Usuario();
@@ -16,9 +18,9 @@ public class Atividade {
     private String descricao;
     private Date dataInicio;
     private Date dataTermino;
-    private Usuario responsavel;
+    private UsuarioInterface responsavel;
     private int id;
-    private List<Usuario> profissionais;
+    private List<UsuarioInterface> profissionais;
     private String cargos;
 
 
@@ -35,7 +37,7 @@ public class Atividade {
         return descricao;
     }
 
-    public void setDesc(String descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
@@ -43,7 +45,7 @@ public class Atividade {
         return dataInicio;
     }
 
-    public void setBegin(Date dataInicio) {
+    public void setdataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
@@ -55,11 +57,11 @@ public class Atividade {
         this.dataTermino = dataTermino;
     }
 
-    public Usuario getResponsavel() {
+    public UsuarioInterface getResponsavel() {
         return responsavel;
     }
 
-    public void setResp(Usuario responsavel) {
+    public void setResponsavel(UsuarioInterface responsavel) {
         this.responsavel = responsavel;
     }
 
@@ -71,11 +73,11 @@ public class Atividade {
         this.id = id;
     }
 
-    public List<Usuario> getProfissionais() {
+    public List<UsuarioInterface> getProfissionais() {
         return profissionais;
     }
 
-    public void setProfs(ArrayList<Usuario> profissionais) {
+    public void setProfissionais(List<UsuarioInterface> profissionais) {
         this.profissionais = profissionais;
     }
 
