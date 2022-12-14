@@ -15,7 +15,7 @@ public class Bolsa extends Operacoes {
     public static void gerenciamento(List<Projeto> listProjeto){
         Scanner input = new Scanner(System.in);
         for (Projeto projeto : listProjeto) {
-            System.out.println(projeto.getId() + " - " + projeto.getIdent() + " " + projeto.getDesc());
+            System.out.println(projeto.getId() + " - " + projeto.getIdent() + " " + projeto.getDescricao());
         }
         int opt = input.nextInt();
         input.nextLine();

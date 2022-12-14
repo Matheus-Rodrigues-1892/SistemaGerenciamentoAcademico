@@ -192,7 +192,7 @@ public class Adicao extends Operacoes{
                 String inicio = getString(input);
                 formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 datei = formatter.parse(inicio);
-                projeto.setdataInicio(datei);
+                projeto.setdataInicio((java.sql.Date) datei);
             } catch (ParseException e){
                 stringExtract("Formato errado de data" + e.getMessage());
             }
@@ -200,7 +200,7 @@ public class Adicao extends Operacoes{
                 stringExtract("digite a data de termino do projeto: (dd/MM/yyyy hh:mm:ss)");
                 String termino = getString(input);
                 Date datef = formatter.parse(termino);
-                projeto.setdataTermino(datef);
+                projeto.setdataTermino((java.sql.Date) datef);
 
                 Calendar m_calendar = getCalendar();
                 setFormatDate(datei, m_calendar);

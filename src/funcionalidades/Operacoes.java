@@ -14,8 +14,8 @@ public abstract class Operacoes {
     protected List<Projeto> listProjeto;
     protected List<Atividade> listAtividade;
 
-    public Operacoes(ArrayList<Usuario> listUsuarios, ArrayList<Projeto> listProjetos,
-            ArrayList<Atividade> listAtividades) {
+    public Operacoes(List<Usuario> listUsuarios, List<Projeto> listProjetos,
+            List<Atividade> listAtividades) {
 
                 this.listUsuario = listUsuarios;
                 this.listProjeto = listProjetos;
@@ -25,20 +25,17 @@ public abstract class Operacoes {
     private Stack pilhaUndo;
     private Stack pilhaRedo;
 
-    public Stack getStkUndo() { 
-        return pilhaUndo; 
+    public Stack getPilhaUndo() {
+        return pilhaUndo;
     }
-
-    public void setStkUndo(Stack pilhaUndo) { 
-        this.pilhaUndo = pilhaUndo; 
+    public void setPilhaUndo(Stack pilhaUndo) {
+        this.pilhaUndo = pilhaUndo;
     }
-
-    public Stack getStkRedo() { 
-        return pilhaRedo; 
+    public Stack getPilhaRedo() {
+        return pilhaRedo;
     }
-
-    public void setStkRedo(Stack pilhaRedo) { 
-        this.pilhaRedo = pilhaRedo; 
+    public void setPilhaRedo(Stack pilhaRedo) {
+        this.pilhaRedo = pilhaRedo;
     }
 
 }

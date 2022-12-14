@@ -35,8 +35,8 @@ public class Projeto {
         return atividades;
     }
 
-    public void setatividades(ArrayList<Atividade> atividades) {
-        this.atividades = atividades;
+    public void setAtividades(List<Atividade> atividadesses) {
+        this.atividades = atividadesses;
     }
 
 
@@ -55,11 +55,11 @@ public class Projeto {
         this.ident = ident;
     }
 
-    public String getDesc() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDesc(String descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
@@ -67,16 +67,16 @@ public class Projeto {
         return dataInicio;
     }
 
-    public void setdataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setdataInicio(Date datei) {
+        this.dataInicio = datei;
     }
 
     public Date getdataTermino() {
         return dataTermino;
     }
 
-    public void setdataTermino(Date dataTermino) {
-        this.dataTermino = dataTermino;
+    public void setdataTermino(Date datef) {
+        this.dataTermino = datef;
     }
 
     public Usuario getResponsavel() {
@@ -115,8 +115,8 @@ public class Projeto {
         return profissionais;
     }
 
-    public void setProfs(ArrayList<Usuario> profissionais) {
-        this.profissionais = profissionais;
+    public void setProfissionais(List<Usuario> listUserp) {
+        this.profissionais = listUserp;
     }
 
     public String getCargos() {
