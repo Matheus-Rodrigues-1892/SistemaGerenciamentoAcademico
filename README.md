@@ -1,9 +1,10 @@
 # Sistema Gerenciamento Academico
 
-<br>Projeto relacionado à disciplina Projeto de Software<\br>
-Aluno: Matheus Moreira Rodrigues
+*Projeto relacionado à disciplina Projeto de Software
+*Aluno: Matheus Moreira Rodrigues
 
 # Code Smells
 Duplicate Code, Lazy Class, Long Method, Data Class
+# Desigers 
 
  
