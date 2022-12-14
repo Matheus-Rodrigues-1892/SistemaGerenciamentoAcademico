@@ -6,8 +6,13 @@ Projeto relacionado à disciplina Projeto de Software. Aluno: Matheus Moreira Ro
 Duplicate Code, Lazy Class, Long Method, Data Class
 ## Padrões de Projeto
 ### Padrão Bridge
+Separar a implementação da abstração
 
-* Este Padrão serviu para eliminarmos o problema da large class que tinham operações com muitas linhas dividindo em subclasses
+### Extract Method
+Agrupamento de blocos de códigos que eram repetidos desnecessariamente
+
+### Factory Method
+Permite criar diferentes tipos de usuário
 
 
  
