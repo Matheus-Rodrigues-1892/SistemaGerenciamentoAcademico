@@ -1,6 +1,6 @@
 # Sistema Gerenciamento Academico
 
-Projeto relacionado à disciplina Projeto de Software<\br
+<br>Projeto relacionado à disciplina Projeto de Software<\br>
 Aluno: Matheus Moreira Rodrigues
 
 # Code Smells
